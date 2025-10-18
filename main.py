@@ -47,6 +47,7 @@ print("Do you want to run market basket analysis? (Yes/No)")
 while True:
     user_response = input("")
     if user_response == "Yes":
+        
         #Create transaction using OrderID & ProductName
         transactions = data_set.groupby("OrderID")["ProductName"].apply(list).tolist()
         print(f"Created {len(transactions)} transactions")
