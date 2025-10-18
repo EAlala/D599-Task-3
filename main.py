@@ -11,3 +11,7 @@ data_set_encoded = data_set.copy()
 #Order priority encoding
 priority_map = {"critical" : 3, "High" : 2, "Medium" : 1, "Low" : 0}
 data_set_encoded["OrderPriority_encoded"] =  data_set_encoded["OrderPriority"].map(priority_map)
+
+#Customer satisdaction encoding
+satisfaction_map = {"Very Dissatisfied": 0, "Dissatisfied": 1, "Neutral": 2, "Satisfied": 3,"Very Satisfied": 4}
+data_set_encoded = ["satisfaction_encoded"] = data_set_encoded["CustomerOrderSatisfaction"].map("satisfaction_map")
