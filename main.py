@@ -3,14 +3,14 @@ from sklearn.preprocessing import OrdinalEncoder, LabelEncoder
 import numpy as np
 
 
+#Load data set
+data_set = pd.read_csv("C:/Users/yeai2_6rsknlh/OneDrive/Visual/D599 Task 3/Megastore Dataset.csv")
+
 #While loop
 print("Do you want to run endcoding? (Yes/No)")
 while True:
     user_response = input("")
     if user_response == "Yes":
-    
-        #Load data set
-        data_set = pd.read_csv("C:/Users/yeai2_6rsknlh/OneDrive/Visual/D599 Task 3/Megastore Dataset.csv")
 
         #Create copy of data set for encoding 
         data_set_encoded = data_set.copy()
@@ -42,12 +42,25 @@ while True:
         print("\nOkay moving on.")
         break
 
-#While loop
-print("Do you want to run market basket analysis? (Yes/No)")
-while True
-    if user_response == "Yes":
-        #Create transaction using OrderID & ProductName
-        transactions = data_set.groupby("OrderID")["ProductName"].apply(list).tolist()
-        
 
 
+#Create transaction using OrderID & ProductName
+transactions = data_set.groupby("OrderID")["ProductName"].apply(list).tolist()
+print(f"Created {len(transactions)} transactions")
+
+#Save transactions
+pd.DataFrame(transactions).to_csv('transactions.csv', index=False)
+print("Saved transactions to 'transactions.csv'")
+
+#Association rules
+from mlxtend.preprocessing import TransactionEncoder
+from mlxtend.frequent_patterns import apriori, association_rules
+
+# 
+
+#print("Do you want to run market basket analysis? (Yes/No)")
+#while True:
+
+#    elif user_response == "No":
+#        print("\nOkay moving on.")
+#       break   
