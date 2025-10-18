@@ -14,6 +14,8 @@ data_set_encoded["OrderPriority_encoded"] =  data_set_encoded["OrderPriority"].m
 
 #Customer satisfaction encoding
 satisfaction_map = {"Very Dissatisfied": 0, "Dissatisfied": 1, "Neutral": 2, "Satisfied": 3,"Very Satisfied": 4}
-data_set_encoded["Satisfaction_encoded"] = data_set_encoded["CustomerOrderSatisfaction"].map("satisfaction_map")
+data_set_encoded["Satisfaction_encoded"] = data_set_encoded["CustomerOrderSatisfaction"].map(satisfaction_map)
 
 #Region encoding
+regions_map = {"Northeast": 0, "Midwest": 1, "South": 2, "West": 3}
+data_set_encoded["Region_encoded"] = data_set_encoded["Region"].map(regions_map)
