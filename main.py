@@ -24,3 +24,8 @@ data_set_encoded["Region_encoded"] = data_set_encoded["Region"].map(regions_map)
 segment_map = {"Corporate": 0, "Consumer": 1, "Home Office": 2}
 data_set_encoded["Segment_encoded"] = data_set_encoded["Segment"].map(segment_map)
 
+print("Encoding complete")
+
+#Export the encoded data set
+data_set_encoded.to_csv("encoded_dataset.csv", index=False)
+print("File saved as 'encoded_dataset.csv'")
