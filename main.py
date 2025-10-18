@@ -39,10 +39,15 @@ while True:
         break
 
     elif user_response == "No":
-        print("\nThere is nothing more.")
+        print("\nOkay moving on.")
         break
 
-#Create transaction using OrderID & ProductName
-#transactions = 
+#While loop
+print("Do you want to run market basket analysis? (Yes/No)")
+while True
+    if user_response == "Yes":
+        #Create transaction using OrderID & ProductName
+        transactions = data_set.groupby("OrderID")["ProductName"].apply(list).tolist()
+        
 
 
