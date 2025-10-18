@@ -43,24 +43,38 @@ while True:
         break
 
 
+print("Do you want to run market basket analysis? (Yes/No)")
+while True:
+    user_response = input("")
+    if user_response == "Yes":
+        #Create transaction using OrderID & ProductName
+        transactions = data_set.groupby("OrderID")["ProductName"].apply(list).tolist()
+        print(f"Created {len(transactions)} transactions")
 
-#Create transaction using OrderID & ProductName
-transactions = data_set.groupby("OrderID")["ProductName"].apply(list).tolist()
-print(f"Created {len(transactions)} transactions")
+        #Save transactions
+        pd.DataFrame(transactions).to_csv('transactions.csv', index=False)
+        print("\nSaved transactions to 'transactions.csv'")
 
-#Save transactions
-pd.DataFrame(transactions).to_csv('transactions.csv', index=False)
-print("Saved transactions to 'transactions.csv'")
+        #Association rules
+        from mlxtend.preprocessing import TransactionEncoder
+        from mlxtend.frequent_patterns import apriori, association_rules
 
-#Association rules
-from mlxtend.preprocessing import TransactionEncoder
-from mlxtend.frequent_patterns import apriori, association_rules
+        #Machine format
+        te = TransactionEncoder()
+        te_data = te.fit(transactions).transform(transactions)
+        data_set_te = pd.DataFrame(te_data, columns = te.columns_)
 
-# 
+        #Find ruels
+        frequent_itemsets = apriori(data_set_te, min_support=0.01, use_colnames=True)
+        rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.5)
 
-#print("Do you want to run market basket analysis? (Yes/No)")
-#while True:
+        #Get top 3
+        top_rules = rules.head(3)
 
-#    elif user_response == "No":
-#        print("\nOkay moving on.")
-#       break   
+        print("\nTop 3 Rules:")
+        print(top_rules[['antecedents', 'consequents', 'support', 'confidence', 'lift']])
+        break
+
+    elif user_response == "No":
+        print("\nThere is nothing more.")
+        break   
