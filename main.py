@@ -19,3 +19,8 @@ data_set_encoded["Satisfaction_encoded"] = data_set_encoded["CustomerOrderSatisf
 #Region encoding
 regions_map = {"Northeast": 0, "Midwest": 1, "South": 2, "West": 3}
 data_set_encoded["Region_encoded"] = data_set_encoded["Region"].map(regions_map)
+
+#Segment encoding
+segment_map = {"Corporate": 0, "Consumer": 1, "Home Office": 2}
+data_set_encoded["Segment_encoded"] = data_set_encoded["Segment"].map(segment_map)
+
